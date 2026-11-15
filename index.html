@@ -3353,4 +3353,28 @@ scr.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagati
   if (!A.apps.music.open) { A.openApp('music'); A.minApp('music', true); }
 })();
 </script>
-</body></html>
+<script id="awg-mobile-js">
+(() => {
+  const A = window.AWG; if (!A) return;
+  const touch = matchMedia('(pointer:coarse)');
+  A.icons.forEach(ic => {
+    let sx = 0, sy = 0;
+    ic.addEventListener('pointerdown', e => { sx = e.clientX; sy = e.clientY; }, true);
+    ic.addEventListener('click', e => { if (touch.matches && Math.hypot(e.clientX - sx, e.clientY - sy) < 8) A.openApp(ic.dataset.app); });
+  });
+  A.layoutIcons();
+})();
+</script>
+</body></html><style id="awg-mobile-css">
+@media (max-width:820px){
+  #win .caption{display:flex!important}
+  #win .cap.max,.appwin .cap.max{display:none!important}
+  .appwin .cap.min{display:inline-block!important}
+  .window .caption .cap{height:28px;width:42px}
+  .window .caption .cap.close{width:56px}
+  .window .caption .cap.min{border-radius:0 0 0 5px!important}
+  .window .caption .cap.close{border-left:0!important;border-radius:0 0 5px 0!important}
+  .desk-icons{display:block!important}
+}
+</style>
+

@@ -2590,7 +2590,7 @@ INIT.music = () => {
     mp.ctl = {
       play: () => p.playVideo(), pause: () => p.pauseVideo(),
       togglePlay: () => (p.getPlayerState() === 1 ? p.pauseVideo() : p.playVideo()),
-      seek: sec => p.seekTo(sec, true)
+      seek: sec => p.seekTo(sec, true), mute: () => p.mute(), unMute: () => p.unMute()
     };
     host.classList.add('ready'); $('#mp-play').disabled = false;
     const tick = () => {
@@ -3326,7 +3326,8 @@ scr.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagati
   let done = false;
   const scr0 = document.querySelector('.w7-screen');
   if (window.AWG && AWG.signIn) { if (scr0) scr0.classList.add('instant'); AWG.signIn(); }
-  const end = () => { if (done) return; done = true; b.classList.add('out'); setTimeout(() => { b.remove(); if (scr0) scr0.classList.remove('instant'); }, 650); };
+  const end = () => { if (done) return; done = true; b.classList.add('out'); setTimeout(() => b.remove(), 650); };
+  if (scr0) new MutationObserver((m, o) => { if (scr0.hidden) { scr0.classList.remove('instant'); o.disconnect(); } }).observe(scr0, { attributes: true, attributeFilter: ['hidden'] });
   const t0 = performance.now();
   const wait = () => { const ok = window.AWG && AWG.mp && AWG.mp.ctl; if (ok || performance.now() - t0 > 9000) end(); else setTimeout(wait, 150); };
   setTimeout(wait, quick ? 600 : 3700);
@@ -3336,17 +3337,20 @@ scr.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagati
 <script id="awg-autoplay">
 (() => {
   const A = window.AWG; if (!A || !A.apps.music) return;
-  let wanted = false;
-  const tryPlay = () => {
-    const mp = A.mp; if (!wanted || !mp) return;
-    if (mp.ctl) { if (mp.paused) mp.ctl.play(); return; }
-    setTimeout(tryPlay, 400);
+  let gesture = false, muted = false, started = false;
+  const whenReady = fn => { const mp = A.mp; if (mp && mp.ctl) fn(mp); else setTimeout(() => whenReady(fn), 200); };
+  whenReady(mp => {
+    if (gesture) return;
+    mp.ctl.play();
+    setTimeout(() => { if (!gesture && mp.paused) { mp.ctl.mute(); muted = true; mp.ctl.play(); } }, 1200);
+  });
+  const go = () => {
+    if (gesture) return; gesture = true;
+    whenReady(mp => { if (muted) mp.ctl.unMute(); if (mp.paused) mp.ctl.play(); });
   };
-  const go = () => { if (wanted) return; wanted = true; tryPlay(); };
   addEventListener('pointerdown', go, { once: true, capture: true });
   addEventListener('keydown', go, { once: true, capture: true });
-  const start = () => { if (!A.apps.music.open) { A.openApp('music'); A.minApp('music', true); } };
-  start();
+  if (!A.apps.music.open) { A.openApp('music'); A.minApp('music', true); }
 })();
 </script>
 </body></html>

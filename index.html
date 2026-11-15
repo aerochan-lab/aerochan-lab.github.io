@@ -3377,4 +3377,25 @@ scr.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagati
   .desk-icons{display:block!important}
 }
 </style>
+<style id="awg-orb-css">
+.taskbar .start{width:60px;overflow:visible;z-index:2}
+.taskbar .start::before{left:7px;top:-6px;width:46px;height:46px;border-radius:50%;filter:none;
+  background:
+    radial-gradient(ellipse 72% 46% at 50% 100%,rgba(130,240,255,.9) 0,rgba(60,170,255,.4) 45%,rgba(0,0,0,0) 76%),
+    radial-gradient(circle at 50% 38%,#47aef2 0,#1766c6 42%,#0b3483 72%,#051b4a 100%);
+  box-shadow:0 0 0 1px rgba(2,12,36,.9),inset 0 0 0 1px rgba(170,220,255,.6),inset 0 -7px 10px rgba(110,225,255,.45),0 2px 6px rgba(0,0,0,.55);
+  transition:box-shadow .25s ease,filter .25s ease}
+.taskbar .start::after{left:12px;top:-3px;width:36px;height:21px;z-index:2;pointer-events:none;
+  border-radius:50% 50% 46% 46%/62% 62% 38% 38%;
+  background:linear-gradient(180deg,rgba(255,255,255,.88) 0,rgba(255,255,255,.38) 50%,rgba(255,255,255,.04) 100%)}
+.taskbar .start i{left:21px;top:7.5px;width:18px;height:19px;z-index:1;filter:drop-shadow(0 0 3px rgba(190,240,255,.95)) drop-shadow(0 0 6px rgba(120,210,255,.6))}
+.taskbar .start:hover::before,.taskbar .start:focus-visible::before{filter:brightness(1.16) saturate(1.15);
+  box-shadow:0 0 0 1px rgba(2,12,36,.9),inset 0 0 0 1px rgba(200,235,255,.75),inset 0 -7px 12px rgba(140,240,255,.6),0 0 10px 3px rgba(90,210,255,.85),0 0 22px 6px rgba(60,170,255,.45)}
+.taskbar .start.on::before{filter:brightness(1.1) saturate(1.1);
+  box-shadow:0 0 0 1px rgba(2,12,36,.9),inset 0 0 0 1px rgba(200,235,255,.7),inset 0 -7px 12px rgba(140,240,255,.55),0 0 10px 3px rgba(90,210,255,.75)}
+.taskbar .start:active::before{filter:brightness(.82) saturate(1.1);
+  box-shadow:0 0 0 1px rgba(2,12,36,.95),inset 0 0 0 1px rgba(120,180,240,.5),inset 0 4px 10px rgba(0,10,40,.6),0 0 8px 2px rgba(70,180,255,.6)}
+.taskbar .start:active::after{opacity:.75}
+@media (prefers-reduced-motion:reduce){.taskbar .start::before{transition:none}}
+</style>
 

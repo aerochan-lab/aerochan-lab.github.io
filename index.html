@@ -1,4 +1,5 @@
 <!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://www.youtube.com"><link rel="preconnect" href="https://i.ytimg.com"><link rel="preconnect" href="https://www.google.com">
 <meta name="description" content="Hand-picked SFW anime wallpapers from the late 2000s and early 2010s, browsed on a glossy old-school desktop.">
 <meta name="application-name" content="aerochan">
 <meta name="theme-color" content="#0a3c79">
@@ -3321,7 +3322,9 @@ scr.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagati
   const quick = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let done = false;
   const end = () => { if (done) return; done = true; b.classList.add('out'); setTimeout(() => b.remove(), 650); };
-  setTimeout(end, quick ? 600 : 3700);
+  const t0 = performance.now();
+  const wait = () => { const ok = window.AWG && AWG.mp && AWG.mp.ctl; if (ok || performance.now() - t0 > 9000) end(); else setTimeout(wait, 150); };
+  setTimeout(wait, quick ? 600 : 3700);
   b.addEventListener('pointerdown', end); addEventListener('keydown', end, { once: true });
 })();
 </script>
@@ -3338,7 +3341,7 @@ scr.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagati
   addEventListener('pointerdown', go, { once: true, capture: true });
   addEventListener('keydown', go, { once: true, capture: true });
   const start = () => { if (!A.apps.music.open) { A.openApp('music'); A.minApp('music', true); } };
-  setTimeout(start, document.getElementById('aero-boot') ? 3900 : 300);
+  start();
 })();
 </script>
 </body></html>

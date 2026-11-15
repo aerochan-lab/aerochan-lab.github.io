@@ -985,6 +985,8 @@ footer{display:flex;align-items:center;gap:8px;padding:9px 12px;border-top:1px s
 </style>
 <style id="awg-yt-css">.mp-embed{min-height:0!important;aspect-ratio:16/9}.mp-embed iframe{height:100%!important}.mp-embed .mp-loading{height:auto}</style>
 <style id="aero-boot-css">
+.w7-screen.instant,.w7-screen.instant *{animation:none!important;transition:none!important}
+.w7-screen{z-index:2147482000!important}
 .mp-embed .mp-loading{position:absolute;inset:0;z-index:1}
 .mp-embed.ready .mp-loading{display:none}
 #aero-boot{position:fixed;inset:0;z-index:2147483000;background:#000;display:grid;place-items:center;cursor:default;transition:opacity .6s ease}
@@ -3322,7 +3324,9 @@ scr.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagati
   const b = document.getElementById('aero-boot'); if (!b) return;
   const quick = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let done = false;
-  const end = () => { if (done) return; done = true; if (window.AWG && AWG.signIn) AWG.signIn(); b.classList.add('out'); setTimeout(() => b.remove(), 650); };
+  const scr0 = document.querySelector('.w7-screen');
+  if (window.AWG && AWG.signIn) { if (scr0) scr0.classList.add('instant'); AWG.signIn(); }
+  const end = () => { if (done) return; done = true; b.classList.add('out'); setTimeout(() => { b.remove(); if (scr0) scr0.classList.remove('instant'); }, 650); };
   const t0 = performance.now();
   const wait = () => { const ok = window.AWG && AWG.mp && AWG.mp.ctl; if (ok || performance.now() - t0 > 9000) end(); else setTimeout(wait, 150); };
   setTimeout(wait, quick ? 600 : 3700);

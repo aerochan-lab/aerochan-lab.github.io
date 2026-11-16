@@ -1222,6 +1222,58 @@ body.swv-open{overflow:hidden}
 .bsod p{margin:0 0 1.2em;max-width:900px}
 @media (prefers-reduced-motion:reduce){.petals i{animation-duration:30s}}
 </style>
+<style id="awg-v16-css">
+/* ---------- v16 ---------- */
+/* pictures keep their shape everywhere: fixed ratio boxes with the image cropped inside */
+.flip-item .fi{display:block;position:relative;width:100%;height:0;padding-bottom:62.5%;overflow:hidden;background:#0d1a28;box-shadow:0 0 0 1px rgba(5,20,40,.6)}
+.flip-item .fi img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover;box-shadow:none}
+#grid article > a{display:block;position:relative;height:0;padding-bottom:62.5%;overflow:hidden}
+#grid article > a > img{position:absolute;inset:0;width:100%!important;height:100%!important;aspect-ratio:auto!important;object-fit:contain}
+.wotd-pic{position:relative;height:135px;aspect-ratio:auto}
+.wotd-pic img{position:absolute;inset:0}
+@media (max-width:820px){.wotd-pic{width:100%;height:0;padding-bottom:56.25%}}
+.mlt-pic{position:relative;height:0;padding-bottom:62.5%;aspect-ratio:auto}
+.mlt-pic img{position:absolute;inset:0}
+.th-art{height:0;padding-bottom:56.25%;aspect-ratio:auto}
+.th-art img{position:absolute;inset:0}
+
+/* gadgets: shadows drawn with box-shadow; drop-shadow filters left smears on iPhone */
+.gadget,.gadget.dragging{filter:none}
+.g-clock .g-body svg{border-radius:50%;box-shadow:0 5px 14px rgba(0,25,60,.45)}
+.g-calendar .g-body{box-shadow:0 0 0 1px rgba(20,50,90,.55),inset 0 0 0 1px #fff,0 5px 14px rgba(0,25,60,.4)}
+.g-slideshow .g-body{box-shadow:0 0 0 1px rgba(0,0,0,.75),inset 0 1px 0 rgba(255,255,255,.3),0 5px 14px rgba(0,25,60,.45)}
+.g-notes .g-body{box-shadow:0 0 0 1px rgba(150,110,10,.55),inset 0 1px 0 #fff,0 5px 14px rgba(0,25,60,.4)}
+.gadget{transform:translateZ(0)}
+
+/* credits on phones */
+@media (max-width:820px){
+  footer{flex-wrap:wrap}
+  footer .credit{display:block;width:100%;margin:2px 0 0;text-align:center}
+  .startmenu .sm-made{display:block;padding:8px 10px 2px}
+}
+
+/* Flip 3D */
+.flip3d-btn{flex:none;width:40px;margin:3px 2px 3px 4px;padding:0;border:1px solid transparent;border-radius:3px;cursor:pointer;background:center/26px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23e9f6ff'/%3E%3Cstop offset='1' stop-color='%2378b6ea'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg stroke='%23163a63' stroke-width='1'%3E%3Cpath d='M15 6l12-3v17l-12 3z' fill='url(%23g)' opacity='.55'/%3E%3Cpath d='M10 9l12-3v17l-12 3z' fill='url(%23g)' opacity='.75'/%3E%3Cpath d='M4 12l12-3v17L4 29z' fill='url(%23g)'/%3E%3C/g%3E%3Cpath d='M5 13l10-2.5v3.5L5 16.5z' fill='%23fff' opacity='.7'/%3E%3C/svg%3E")}
+.flip3d-btn:hover,.flip3d-btn:focus-visible{outline:0;border-color:rgba(255,255,255,.3);background-color:rgba(255,255,255,.12)}
+.f3{position:fixed;inset:0 0 var(--tb) 0;z-index:2147482000;background:radial-gradient(ellipse at 40% 40%,rgba(10,40,80,.35),rgba(0,8,20,.62));perspective:1100px;perspective-origin:20% 25%;animation:f3in .25s ease-out;overflow:hidden}
+.f3.out{opacity:0;transition:opacity .25s ease}
+@keyframes f3in{from{opacity:0}}
+.f3-stage{position:absolute;inset:0;transform-style:preserve-3d}
+.f3-card{position:absolute;left:16%;top:30%;padding:0;border:0;background:none;cursor:pointer;transform-style:preserve-3d;transform-origin:50% 50%;border-radius:7px;overflow:visible;box-shadow:0 18px 40px rgba(0,0,0,.5)}
+.f3-card > .window{box-shadow:none;left:0!important;top:0!important;width:var(--w)!important;height:var(--h)!important;border-radius:6px}
+.f3-card.front{box-shadow:0 18px 40px rgba(0,0,0,.5),0 0 0 2px rgba(150,220,255,.75),0 0 26px rgba(90,190,255,.6)}
+.f3-card:focus-visible{outline:0}
+.f3-deskcard{overflow:hidden;border:1px solid rgba(255,255,255,.6)}
+.f3-desk{position:absolute;inset:0;background:center/cover no-repeat,linear-gradient(160deg,#0b3c7a,#1f74cc 45%,#7cc3ff 60%,#0d3a72);display:flex;align-items:flex-end;padding:10px}
+.f3-desk-lbl{padding:3px 8px;border-radius:3px;background:rgba(0,20,50,.5);color:#fff;font-size:13px}
+.f3-blank{width:100%;height:100%;background:#0b1620}
+.f3-name{position:absolute;left:0;right:0;bottom:44px;text-align:center;color:#fff;font-size:18px;font-weight:300;text-shadow:0 1px 4px rgba(0,0,0,.8)}
+.f3-help{position:absolute;left:0;right:0;bottom:18px;text-align:center;color:rgba(255,255,255,.75);font-size:12px;text-shadow:0 1px 3px rgba(0,0,0,.8)}
+body.f3-on .window:not(.f3-card .window){visibility:hidden}
+@media (max-width:700px){.f3-card{left:12%;top:24%}.f3{perspective-origin:30% 20%}}
+@media (prefers-reduced-motion:reduce){.f3-card{transition:none!important}}
+body.f3-on .balloons{visibility:hidden}
+</style>
 <body>
 <div id="aero-boot" role="region" aria-label="Starting aerochan"><div class="bt-stage"><div class="bt-flash"></div><div class="bt-spin"><i class="bt-orb"></i><i class="bt-orb"></i><i class="bt-orb"></i><i class="bt-orb"></i></div><svg class="bt-mark" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><g class="bt-big"><polygon points="44.00,55.00 44.00,11.00 33.39,44.39" fill="#e4fbff"/><polygon points="44.00,55.00 44.00,11.00 54.61,44.39" fill="#74d6fb"/><polygon points="44.00,55.00 82.00,55.00 54.61,44.39" fill="#a9ecff"/><polygon points="44.00,55.00 82.00,55.00 54.61,65.61" fill="#2e9ce6"/><polygon points="44.00,55.00 44.00,99.00 54.61,65.61" fill="#0f53a8"/><polygon points="44.00,55.00 44.00,99.00 33.39,65.61" fill="#1667c2"/><polygon points="44.00,55.00 6.00,55.00 33.39,65.61" fill="#1f7fd6"/><polygon points="44.00,55.00 6.00,55.00 33.39,44.39" fill="#4bbcf2"/><polygon points="44.00,11.00 54.61,44.39 82.00,55.00 54.61,65.61 44.00,99.00 33.39,65.61 6.00,55.00 33.39,44.39" fill="none" stroke="#ffffff" stroke-opacity=".55" stroke-width="1.1" stroke-linejoin="miter"/></g><g class="bt-small"><polygon points="83.00,17.00 83.00,2.00 79.32,13.32" fill="#fff0f7"/><polygon points="83.00,17.00 83.00,2.00 86.68,13.32" fill="#ffa6cf"/><polygon points="83.00,17.00 95.50,17.00 86.68,13.32" fill="#ffcde4"/><polygon points="83.00,17.00 95.50,17.00 86.68,20.68" fill="#f4679f"/><polygon points="83.00,17.00 83.00,32.00 86.68,20.68" fill="#b2306a"/><polygon points="83.00,17.00 83.00,32.00 79.32,20.68" fill="#cc3f7a"/><polygon points="83.00,17.00 70.50,17.00 79.32,20.68" fill="#e2508c"/><polygon points="83.00,17.00 70.50,17.00 79.32,13.32" fill="#ff86bc"/><polygon points="83.00,2.00 86.68,13.32 95.50,17.00 86.68,20.68 83.00,32.00 79.32,20.68 70.50,17.00 79.32,13.32" fill="none" stroke="#ffffff" stroke-opacity=".55" stroke-width=".8" stroke-linejoin="miter"/></g></svg></div><div class="bt-text">Starting aerochan</div><button class="bt-sound" type="button" hidden>Play startup sound</button><div class="bt-copy">Made by Aozora</div></div>
 <svg class="defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
@@ -1435,7 +1487,7 @@ body.swv-open{overflow:hidden}
 </div>
 <div class="taskbar">
 <button class="start" type="button" aria-label="Start" aria-haspopup="menu" aria-expanded="false" aria-controls="startmenu"><i></i></button>
-<div class="tasks"><button class="task" type="button" data-app="gallery" id="task-app" title="Anime Wallpaper Gallery" aria-label="Anime Wallpaper Gallery" aria-pressed="false"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="5" y="9" width="30" height="24" fill="url(#g-frame)" stroke="#7d8a97" transform="rotate(-9 20 21)"/><rect x="12" y="14" width="32" height="26" fill="url(#g-frame)" stroke="#6f7c8a"/><rect x="15" y="17" width="26" height="20" fill="url(#g-sky)"/><circle cx="34" cy="22" r="3" fill="#fffbe0"/><path d="M15 33 Q23 25 31 31 T41 29 V37 H15z" fill="url(#g-hill)"/><rect x="15" y="17" width="26" height="8" fill="url(#g-gloss)" opacity=".55"/></svg></button><button class="task transient" type="button" data-app="checker" title="Checker" aria-label="Checker" aria-pressed="false"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="5" y="6" width="34" height="26" fill="url(#g-frame)" stroke="#6f7c8a"/><rect x="8" y="9" width="28" height="20" fill="url(#g-sky)"/><path d="M8 26 Q16 19 24 24 T36 22 V29 H8z" fill="url(#g-hill)"/><rect x="8" y="27" width="16" height="16" rx="2" fill="url(#g-red)" stroke="#8f1b0d"/><path d="M12 31l8 8M20 31l-8 8" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><rect x="27" y="27" width="16" height="16" rx="2" fill="url(#g-green)" stroke="#1d6d16"/><path d="M30.5 35.5l3.5 3.5 6-7.5" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="task transient game" type="button" data-app="paint" title="Paint" aria-label="Paint" aria-pressed="false"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M8 34c0-14 10-26 22-26 8 0 12 5 12 10 0 6-6 6-9 6-4 0-4 4-2 7 2 4-1 8-7 8-8 0-16-1-16-5z" fill="#f4e8cf" stroke="#9b7b47" stroke-width="1.6"/><circle cx="18" cy="22" r="3.4" fill="#e3261b"/><circle cx="26" cy="15" r="3.4" fill="#ffc90e"/><circle cx="34" cy="16" r="3.2" fill="#22b14c"/><circle cx="16" cy="31" r="3.4" fill="#00a2e8"/><path d="M30 44l14-22 2.6 1.6-12 23z" fill="#c98b3a" stroke="#6d4710" stroke-width="1"/><path d="M28 45.5l2-2.2 2.6 1.6-1 2.6z" fill="#333"/></svg></button><button class="task transient game" type="button" data-app="mines" title="Minesweeper" aria-label="Minesweeper" aria-pressed="false"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="5" y="5" width="38" height="38" rx="3" fill="url(#g-orb)" stroke="#0a4a8c"/><g stroke="#10202f" stroke-width="2.6" stroke-linecap="round"><path d="M24 10v28M10 24h28M14 14l20 20M34 14L14 34"/></g><circle cx="24" cy="24" r="9" fill="#1b2633"/><circle cx="21" cy="21" r="2.6" fill="#fff"/><rect x="6" y="6" width="36" height="15" rx="2" fill="url(#g-gloss)" opacity=".5"/></svg></button><button class="task transient game" type="button" data-app="solitaire" title="Solitaire" aria-label="Solitaire" aria-pressed="false"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="6" y="9" width="22" height="31" rx="2.5" fill="#1f6fc5" stroke="#0d3f78" transform="rotate(-12 17 24)"/><rect x="19" y="8" width="23" height="32" rx="2.5" fill="#fff" stroke="#7d8a97" transform="rotate(8 30 24)"/><path d="M31 18c-2.6-4-8-1.4-5 2.6L31 27l5-6.4c3-4-2.4-6.6-5-2.6z" fill="#d0202a" transform="rotate(8 30 24)"/><text x="23" y="16" font-size="7" font-family="Segoe UI,sans-serif" font-weight="700" fill="#d0202a" transform="rotate(8 30 24)">A</text></svg></button><button class="task transient" type="button" data-app="music" title="Music" aria-label="Music" aria-pressed="false"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="6" y="6" width="36" height="36" rx="4" fill="url(#g-orb)" stroke="#0a4a8c"/><path d="M19 33V15l15-3v18" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/><ellipse cx="16" cy="33" rx="4.2" ry="3.2" fill="#fff"/><ellipse cx="31" cy="30" rx="4.2" ry="3.2" fill="#fff"/><rect x="7" y="7" width="34" height="15" rx="3" fill="url(#g-gloss)" opacity=".6"/></svg></button><button class="task transient" type="button" data-app="gadgets" title="Gadgets" aria-label="Gadgets" aria-pressed="false"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="20" y="6" width="22" height="25" fill="url(#g-page)" stroke="#7d8a97"/><rect x="20" y="6" width="22" height="7" fill="url(#g-red)"/><path d="M24 17h14M24 21h14M24 25h10" stroke="#9fb3c6" stroke-width="1.6"/><circle cx="17" cy="29" r="13" fill="url(#g-face)" stroke="#1d5f9e" stroke-width="2.4"/><path d="M17 29V20M17 29l6 3" stroke="#12324f" stroke-width="2.2" stroke-linecap="round"/><circle cx="17" cy="29" r="1.6" fill="#12324f"/></svg></button><button class="task transient" type="button" data-app="personalize" title="Personalize" aria-label="Personalize" aria-pressed="false"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="5" y="7" width="38" height="28" rx="2" fill="url(#g-bezel)"/><rect x="8" y="10" width="32" height="21" fill="url(#g-screen)"/><rect x="8" y="10" width="32" height="9" fill="url(#g-gloss)" opacity=".5"/><path d="M20 35h8l2 6H18z" fill="#3a434d"/><rect x="14" y="40" width="20" height="3" rx="1" fill="#55606b"/><rect x="11" y="24" width="5" height="5" fill="#ef4b3c"/><rect x="17" y="24" width="5" height="5" fill="#f5c52b"/><rect x="23" y="24" width="5" height="5" fill="#46c23a"/><rect x="29" y="24" width="5" height="5" fill="#2aa7f5"/></svg></button></div>
+<button class="flip3d-btn" type="button" title="Flip 3D: switch between windows (Ctrl+`)" aria-label="Flip 3D"></button><div class="tasks"><button class="task" type="button" data-app="gallery" id="task-app" title="Anime Wallpaper Gallery" aria-label="Anime Wallpaper Gallery" aria-pressed="false"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="5" y="9" width="30" height="24" fill="url(#g-frame)" stroke="#7d8a97" transform="rotate(-9 20 21)"/><rect x="12" y="14" width="32" height="26" fill="url(#g-frame)" stroke="#6f7c8a"/><rect x="15" y="17" width="26" height="20" fill="url(#g-sky)"/><circle cx="34" cy="22" r="3" fill="#fffbe0"/><path d="M15 33 Q23 25 31 31 T41 29 V37 H15z" fill="url(#g-hill)"/><rect x="15" y="17" width="26" height="8" fill="url(#g-gloss)" opacity=".55"/></svg></button><button class="task transient" type="button" data-app="checker" title="Checker" aria-label="Checker" aria-pressed="false"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="5" y="6" width="34" height="26" fill="url(#g-frame)" stroke="#6f7c8a"/><rect x="8" y="9" width="28" height="20" fill="url(#g-sky)"/><path d="M8 26 Q16 19 24 24 T36 22 V29 H8z" fill="url(#g-hill)"/><rect x="8" y="27" width="16" height="16" rx="2" fill="url(#g-red)" stroke="#8f1b0d"/><path d="M12 31l8 8M20 31l-8 8" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><rect x="27" y="27" width="16" height="16" rx="2" fill="url(#g-green)" stroke="#1d6d16"/><path d="M30.5 35.5l3.5 3.5 6-7.5" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="task transient game" type="button" data-app="paint" title="Paint" aria-label="Paint" aria-pressed="false"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M8 34c0-14 10-26 22-26 8 0 12 5 12 10 0 6-6 6-9 6-4 0-4 4-2 7 2 4-1 8-7 8-8 0-16-1-16-5z" fill="#f4e8cf" stroke="#9b7b47" stroke-width="1.6"/><circle cx="18" cy="22" r="3.4" fill="#e3261b"/><circle cx="26" cy="15" r="3.4" fill="#ffc90e"/><circle cx="34" cy="16" r="3.2" fill="#22b14c"/><circle cx="16" cy="31" r="3.4" fill="#00a2e8"/><path d="M30 44l14-22 2.6 1.6-12 23z" fill="#c98b3a" stroke="#6d4710" stroke-width="1"/><path d="M28 45.5l2-2.2 2.6 1.6-1 2.6z" fill="#333"/></svg></button><button class="task transient game" type="button" data-app="mines" title="Minesweeper" aria-label="Minesweeper" aria-pressed="false"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="5" y="5" width="38" height="38" rx="3" fill="url(#g-orb)" stroke="#0a4a8c"/><g stroke="#10202f" stroke-width="2.6" stroke-linecap="round"><path d="M24 10v28M10 24h28M14 14l20 20M34 14L14 34"/></g><circle cx="24" cy="24" r="9" fill="#1b2633"/><circle cx="21" cy="21" r="2.6" fill="#fff"/><rect x="6" y="6" width="36" height="15" rx="2" fill="url(#g-gloss)" opacity=".5"/></svg></button><button class="task transient game" type="button" data-app="solitaire" title="Solitaire" aria-label="Solitaire" aria-pressed="false"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="6" y="9" width="22" height="31" rx="2.5" fill="#1f6fc5" stroke="#0d3f78" transform="rotate(-12 17 24)"/><rect x="19" y="8" width="23" height="32" rx="2.5" fill="#fff" stroke="#7d8a97" transform="rotate(8 30 24)"/><path d="M31 18c-2.6-4-8-1.4-5 2.6L31 27l5-6.4c3-4-2.4-6.6-5-2.6z" fill="#d0202a" transform="rotate(8 30 24)"/><text x="23" y="16" font-size="7" font-family="Segoe UI,sans-serif" font-weight="700" fill="#d0202a" transform="rotate(8 30 24)">A</text></svg></button><button class="task transient" type="button" data-app="music" title="Music" aria-label="Music" aria-pressed="false"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="6" y="6" width="36" height="36" rx="4" fill="url(#g-orb)" stroke="#0a4a8c"/><path d="M19 33V15l15-3v18" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/><ellipse cx="16" cy="33" rx="4.2" ry="3.2" fill="#fff"/><ellipse cx="31" cy="30" rx="4.2" ry="3.2" fill="#fff"/><rect x="7" y="7" width="34" height="15" rx="3" fill="url(#g-gloss)" opacity=".6"/></svg></button><button class="task transient" type="button" data-app="gadgets" title="Gadgets" aria-label="Gadgets" aria-pressed="false"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="20" y="6" width="22" height="25" fill="url(#g-page)" stroke="#7d8a97"/><rect x="20" y="6" width="22" height="7" fill="url(#g-red)"/><path d="M24 17h14M24 21h14M24 25h10" stroke="#9fb3c6" stroke-width="1.6"/><circle cx="17" cy="29" r="13" fill="url(#g-face)" stroke="#1d5f9e" stroke-width="2.4"/><path d="M17 29V20M17 29l6 3" stroke="#12324f" stroke-width="2.2" stroke-linecap="round"/><circle cx="17" cy="29" r="1.6" fill="#12324f"/></svg></button><button class="task transient" type="button" data-app="personalize" title="Personalize" aria-label="Personalize" aria-pressed="false"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="5" y="7" width="38" height="28" rx="2" fill="url(#g-bezel)"/><rect x="8" y="10" width="32" height="21" fill="url(#g-screen)"/><rect x="8" y="10" width="32" height="9" fill="url(#g-gloss)" opacity=".5"/><path d="M20 35h8l2 6H18z" fill="#3a434d"/><rect x="14" y="40" width="20" height="3" rx="1" fill="#55606b"/><rect x="11" y="24" width="5" height="5" fill="#ef4b3c"/><rect x="17" y="24" width="5" height="5" fill="#f5c52b"/><rect x="23" y="24" width="5" height="5" fill="#46c23a"/><rect x="29" y="24" width="5" height="5" fill="#2aa7f5"/></svg></button></div>
 <div class="tray">
 <button class="tray-btn tray-up" type="button" aria-label="Show hidden icons" title="Show hidden icons" aria-expanded="false"><i></i></button><span class="tray-ico ico-flag" role="img" aria-label="No current issues detected" title="No current issues detected"></span><span class="tray-ico ico-net" role="img" aria-label="Internet access" title="Internet access"></span>
 <button class="tray-btn" id="tray-vol" type="button" aria-label="Mute sounds" title="Sounds on"><i class="ico-vol"></i></button>
@@ -2207,7 +2259,7 @@ function fillFlip() {
   flip.textContent = '';
   flipItems = picks.map(p => {
     const name = p.site + ' #' + p.id, b = el('button', 'flip-item far'); b.type = 'button';
-    b.innerHTML = '<span class="ft"></span><img alt="" decoding="async">';
+    b.innerHTML = '<span class="ft"></span><span class="fi"><img alt="" decoding="async"></span>';
     $('.ft', b).textContent = name;
     const it = { b, img: $('img', b), p, name, loaded: false };
     b.onclick = () => { if (b.classList.contains('front')) setDesktop({ full: p.original, thumb: p.preview, name }); };
@@ -2419,28 +2471,108 @@ function hiss(t, dur, f0, f1, peak, q) {
   g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(peak, t + dur * .35); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
   s.connect(f).connect(g).connect(master); s.start(t); s.stop(t + dur + .02);
 }
+/* sound kit: soft glass chimes, air and taps with a small room around them, all made here */
+let VERB = null;
+function room() {
+  if (VERB) return VERB;
+  const len = Math.floor(AC.sampleRate * 1.6), ir = AC.createBuffer(2, len, AC.sampleRate);
+  for (let ch = 0; ch < 2; ch++) {
+    const d = ir.getChannelData(ch); let lp = 0;
+    for (let i = 0; i < len; i++) { const k = i / len; lp += (Math.random() * 2 - 1 - lp) * (.55 - k * .4); d[i] = lp * Math.pow(1 - k, 3.2) * (i < 90 ? i / 90 : 1); }
+  }
+  VERB = AC.createConvolver(); VERB.buffer = ir;
+  const wet = AC.createGain(); wet.gain.value = .3;
+  VERB.connect(wet).connect(master);
+  return VERB;
+}
+function out(node, pan = 0, wet = 1) {
+  let n = node;
+  if (pan && AC.createStereoPanner) { const p = AC.createStereoPanner(); p.pan.value = pan; n.connect(p); n = p; }
+  n.connect(master);
+  if (wet) { const s = AC.createGain(); s.gain.value = wet; n.connect(s).connect(room()); }
+}
+function noiseBuf() {
+  if (NOISE) return NOISE;
+  const n = AC.sampleRate * 2; NOISE = AC.createBuffer(1, n, AC.sampleRate); const d = NOISE.getChannelData(0);
+  let b0 = 0, b1 = 0, b2 = 0;   // soft "pink" noise, gentler than white
+  for (let i = 0; i < n; i++) { const w = Math.random() * 2 - 1; b0 = .997 * b0 + w * .029591; b1 = .985 * b1 + w * .032534; b2 = .95 * b2 + w * .048056; d[i] = (b0 + b1 + b2 + w * .05) * 2.2; }
+  return NOISE;
+}
+// a glassy chime: a few slightly out-of-tune partials with their own decays, a soft strike and a touch of chorus
+function glass(t, f, len = 1.2, vol = .1, pan = 0, bright = 1) {
+  const g = AC.createGain(), lp = AC.createBiquadFilter();
+  lp.type = 'lowpass'; lp.frequency.value = Math.min(16000, f * 6 * bright); lp.Q.value = .3;
+  g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(vol, t + .006); g.gain.setTargetAtTime(0, t + .006, len / 4.5);
+  [[1, 1, 1], [2.005, .32, .55], [3.01, .12, .35], [4.18, .06, .22], [5.43, .025, .15]].forEach(([r, a, d]) => {
+    [-3, 3].forEach(c => {
+      const o = AC.createOscillator(), og = AC.createGain();
+      o.type = 'sine'; o.frequency.value = f * r; o.detune.value = c + (r > 1 ? (Math.random() - .5) * 6 : 0);
+      og.gain.setValueAtTime(a * .5, t); og.gain.setTargetAtTime(0, t, len * d / 4.2);
+      o.connect(og).connect(lp); o.start(t); o.stop(t + len * 1.4 + .1);
+    });
+  });
+  lp.connect(g); out(g, pan, .9);
+}
+// air moving: filtered pink noise that sweeps, with an even swell
+function air(t, len, f0, f1, vol = .12, q = .8, pan0 = 0, pan1 = 0) {
+  const s = AC.createBufferSource(), bp = AC.createBiquadFilter(), g = AC.createGain();
+  s.buffer = noiseBuf(); s.loop = true; s.playbackRate.value = 1;
+  bp.type = 'bandpass'; bp.Q.value = q;
+  bp.frequency.setValueAtTime(f0, t); bp.frequency.exponentialRampToValueAtTime(f1, t + len);
+  g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(vol, t + len * .45); g.gain.linearRampToValueAtTime(0, t + len);
+  let n = s.connect(bp).connect(g);
+  if (AC.createStereoPanner) { const p = AC.createStereoPanner(); p.pan.setValueAtTime(pan0, t); p.pan.linearRampToValueAtTime(pan1, t + len); n = n.connect(p); }
+  out(n, 0, .5);
+  s.start(t, Math.random()); s.stop(t + len + .05);
+}
+// a short tap, like a fingertip on plastic
+function tap(t, f = 2600, vol = .08, len = .035) {
+  const s = AC.createBufferSource(), bp = AC.createBiquadFilter(), g = AC.createGain();
+  s.buffer = noiseBuf(); bp.type = 'bandpass'; bp.frequency.value = f; bp.Q.value = 1.6;
+  g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(.0005, t + len);
+  s.connect(bp).connect(g); out(g, 0, .15); s.start(t, Math.random()); s.stop(t + len + .02);
+  const o = AC.createOscillator(), og = AC.createGain();
+  o.frequency.setValueAtTime(f * .55, t); o.frequency.exponentialRampToValueAtTime(f * .35, t + len);
+  og.gain.setValueAtTime(vol * .5, t); og.gain.exponentialRampToValueAtTime(.0005, t + len);
+  o.connect(og); out(og, 0, .1); o.start(t); o.stop(t + len + .02);
+}
+// a low soft knock
+function knock(t, f = 120, vol = .25, len = .16) {
+  const o = AC.createOscillator(), g = AC.createGain();
+  o.frequency.setValueAtTime(f * 1.6, t); o.frequency.exponentialRampToValueAtTime(f, t + .03);
+  g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(vol, t + .004); g.gain.exponentialRampToValueAtTime(.0005, t + len);
+  o.connect(g); out(g, 0, .25); o.start(t); o.stop(t + len + .02);
+}
+// a water drop: a sine that bends up fast
+function drop(t, f = 520, vol = .16) {
+  const o = AC.createOscillator(), g = AC.createGain();
+  o.frequency.setValueAtTime(f, t); o.frequency.exponentialRampToValueAtTime(f * 2.6, t + .05);
+  g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(vol, t + .006); g.gain.exponentialRampToValueAtTime(.0005, t + .11);
+  o.connect(g); out(g, 0, .6); o.start(t); o.stop(t + .14);
+}
+const NOTE = n => 440 * Math.pow(2, (n - 69) / 12);
 const SOUNDS = {
-  click: t => tone(t, 2300, 1400, .03, 'sine', .06),
-  open: t => { bell(t, 784, .35, .1); bell(t + .07, 1175, .45, .09); },
-  close: t => { bell(t, 1047, .25, .08); bell(t + .06, 698, .35, .08); },
-  min: t => hiss(t, .2, 2400, 420, .14, .8),
-  restore: t => hiss(t, .2, 420, 2400, .14, .8),
-  snap: t => { tone(t, 190, 80, .1, 'sine', .22); hiss(t, .05, 1600, 800, .05, 2); },
-  pop: t => { tone(t, 420, 1500, .065, 'sine', .2); tone(t, 3000, 2200, .02, 'triangle', .04); },
-  dl: t => { hiss(t, .2, 700, 3000, .1, 1.3); tone(t + .06, 880, 1320, .12, 'sine', .06); },
-  done: t => { bell(t, 1319, .5, .09); bell(t + .09, 1661, .5, .08); bell(t + .18, 1976, .8, .08); },
-  ok: t => { bell(t, 1047, .3, .09); bell(t + .07, 1568, .45, .08); },
-  no: t => tone(t, 320, 150, .18, 'triangle', .13),
-  error: t => { tone(t, 330, 330, .12, 'square', .035); tone(t + .15, 247, 247, .18, 'square', .035); },
-  max: t => { tone(t, 330, 660, .12, 'sine', .08); bell(t + .06, 990, .3, .06); },
-  unmax: t => { tone(t, 660, 330, .12, 'sine', .08); bell(t + .06, 740, .25, .05); },
-  notify: t => { bell(t, 880, .4, .09); bell(t + .13, 1175, .55, .08); },
-  exclaim: t => { bell(t, 587, .45, .1); bell(t, 880, .45, .05); bell(t + .1, 740, .5, .07); },
-  shake: t => { hiss(t, .12, 900, 2600, .09, 1.4); hiss(t + .12, .12, 2600, 900, .09, 1.4); tone(t + .05, 523, 784, .18, 'sine', .05); },
-  fav: t => { bell(t, 1568, .25, .07); bell(t + .06, 2093, .35, .06); },
-  boom: t => { hiss(t, .45, 1200, 90, .3, .7); tone(t, 120, 40, .4, 'sine', .3); },
-  win: t => { [784, 988, 1175, 1568].forEach((f, i) => bell(t + i * .1, f, .6, .08)); },
-  shutdown: t => { [1175, 988, 784, 587].forEach((f, i) => bell(t + i * .16, f, .8, .08)); tone(t + .5, 196, 147, 1.1, 'sine', .07); },
+  click: t => tap(t, 2400 + Math.random() * 300, .07),
+  open: t => { air(t, .22, 600, 2600, .05, .7); glass(t + .03, NOTE(76), .9, .07, -.15); glass(t + .1, NOTE(83), 1.1, .06, .15); },
+  close: t => { air(t, .2, 2400, 700, .045, .7); glass(t + .02, NOTE(83), .7, .05, .15); glass(t + .09, NOTE(76), .9, .05, -.15); },
+  min: t => air(t, .3, 2600, 500, .13, .9, 0, -.2),
+  restore: t => air(t, .3, 500, 2600, .13, .9, -.2, 0),
+  max: t => { air(t, .26, 700, 3200, .1, .8); glass(t + .12, NOTE(88), .8, .045); },
+  unmax: t => { air(t, .26, 3000, 700, .1, .8); glass(t + .1, NOTE(81), .7, .04); },
+  snap: t => { knock(t, 95, .22); tap(t, 1600, .05, .05); },
+  pop: t => drop(t, 420 + Math.random() * 160),
+  dl: t => { air(t, .35, 500, 2400, .08, 1); glass(t + .2, NOTE(79), .8, .05); },
+  done: t => { [79, 83, 86, 91].forEach((n, i) => glass(t + i * .085, NOTE(n), 1.4, .06, (i - 1.5) * .2)); },
+  ok: t => { glass(t, NOTE(84), .8, .07); glass(t + .07, NOTE(91), 1, .06); },
+  no: t => { glass(t, NOTE(64), .6, .07, 0, .5); },
+  error: t => { glass(t, NOTE(69), 1.3, .11, 0, .6); glass(t, NOTE(57), 1.3, .06, 0, .5); glass(t + .2, NOTE(64), 1.6, .09, 0, .6); },
+  notify: t => { glass(t, NOTE(84), 1.2, .07, .2); glass(t + .14, NOTE(88), 1.5, .065, .3); },
+  exclaim: t => { [69, 76, 81].forEach(n => glass(t, NOTE(n), 1.6, .06, 0, .7)); },
+  shake: t => { air(t, .16, 900, 2800, .1, 1, -.6, .6); air(t + .15, .16, 2800, 900, .1, 1, .6, -.6); },
+  fav: t => { glass(t, NOTE(96), .8, .05, .2); glass(t + .07, NOTE(100), 1, .045, .35); },
+  boom: t => { knock(t, 55, .45, .6); air(t, .7, 1800, 120, .3, .6); },
+  win: t => { [72, 76, 79, 84, 88].forEach((n, i) => glass(t + i * .11, NOTE(n), 1.6, .07, (i - 2) * .2)); },
+  shutdown: t => { [88, 84, 79, 72].forEach((n, i) => glass(t + i * .2, NOTE(n), 2, .065, (1.5 - i) * .2)); air(t + .5, 1.4, 1200, 200, .05, .5); },
 };
 function sfx(name, force) {
   if ((!sndCfg.on && !force) || !SOUNDS[name]) return;
@@ -4533,6 +4665,134 @@ setInterval(() => {
   if (d.getHours() % 12 === 11 && d.getMinutes() === 11 && d.getSeconds() < 5 && signedIn()) egg('1111', 'Make a wish', 'It is 11:11.');
 }, 5000);
 A.sakura = sakura;
+})();
+</script>
+<script id="awg-v16">
+/* aerochan v16: Windows Flip 3D */
+(() => {
+const A = window.AWG; if (!A) return;
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+const body = document.body;
+let on = false, layer = null, cards = [], order = [], busy = false;
+
+const isOpen = n => n === 'gallery' ? !A.state.closed : !!(A.apps[n] && A.apps[n].open);
+const winOf = n => n === 'gallery' ? $('#win') : A.apps[n] && A.apps[n].el;
+const titleOf = n => { if (n === 'gallery') return 'Anime Wallpaper Gallery'; const w = winOf(n), t = w && $('.win-title', w); return (t && t.textContent.trim()) || (w && w.getAttribute('aria-label')) || n; };
+
+function snapshot(n) {
+  const w = winOf(n);
+  const small = innerWidth <= 820, tb = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--tb')) || 40;
+  const W = small ? innerWidth : parseFloat(w.style.width) || w.offsetWidth || 900, H = small ? innerHeight - tb : parseFloat(w.style.height) || w.offsetHeight || 600;
+  const c = w.cloneNode(true);
+  c.removeAttribute('id'); c.removeAttribute('hidden');
+  c.querySelectorAll('[id]').forEach(x => x.removeAttribute('id'));
+  c.classList.remove('min', 'opening', 'closing', 'dragging', 'peek-target', 'shaken');
+  c.querySelectorAll('iframe, video, audio, script').forEach(o => { const d = el('div', 'f3-blank'); o.replaceWith(d); });
+  const src = $$('canvas', w), dst = $$('canvas', c);
+  dst.forEach((cv, i) => { try { cv.width = src[i].width; cv.height = src[i].height; cv.getContext('2d').drawImage(src[i], 0, 0); } catch (e) { /* tainted or empty */ } });
+  const sc = $('.scroller, #scroller', w), cc = $('.scroller', c); if (sc && cc) cc.scrollTop = sc.scrollTop;
+  c.style.setProperty('--w', W + 'px'); c.style.setProperty('--h', H + 'px');
+  Object.assign(c.style, { position: 'absolute', left: '0', top: '0', width: W + 'px', height: H + 'px', margin: '0', transform: 'none', animation: 'none', opacity: '1', visibility: 'visible', pointerEvents: 'none' });
+  return { c, W, H };
+}
+function deskCard() {
+  const d = el('div', 'f3-desk');
+  const wp = $('.wp-img'), prev = body.classList.contains('previewing') && wp && wp.style.backgroundImage;
+  if (prev) d.style.backgroundImage = prev;
+  d.append(el('span', 'f3-desk-lbl', 'Desktop'));
+  return d;
+}
+function build() {
+  const names = A.WM.order.filter(isOpen).slice().reverse();   // top window first
+  Object.keys(A.apps).forEach(n => { if (isOpen(n) && !names.includes(n)) names.push(n); });
+  if (isOpen('gallery') && !names.includes('gallery')) names.push('gallery');
+  const vw = innerWidth, vh = innerHeight - 40, phone = vw < 700;
+  const maxW = phone ? vw * .62 : Math.min(vw * .58, 900), maxH = phone ? vh * .52 : vh * .58;
+  cards = names.map(n => {
+    const { c, W, H } = snapshot(n), s = Math.min(maxW / W, maxH / H);
+    const card = el('button', 'f3-card'); card.type = 'button';
+    card.setAttribute('aria-label', titleOf(n));
+    card.style.width = Math.round(W * s) + 'px'; card.style.height = Math.round(H * s) + 'px';
+    c.style.transform = `scale(${s})`; c.style.transformOrigin = '0 0';
+    card.append(c); card.name = n;
+    return card;
+  });
+  const dk = el('button', 'f3-card f3-deskcard'); dk.type = 'button'; dk.setAttribute('aria-label', 'Desktop');
+  const dw = Math.min(maxW * .9, maxH * .9 * vw / vh); dk.style.width = Math.round(dw) + 'px'; dk.style.height = Math.round(dw * vh / vw) + 'px';
+  dk.append(deskCard()); dk.name = 'desktop';
+  cards.push(dk);
+  order = cards.map((_, i) => i);
+}
+function place(animate = true) {
+  const phone = innerWidth < 700, n = cards.length;
+  const step = phone ? { x: 14, y: -26, z: -150 } : { x: 46, y: -34, z: -190 };
+  order.forEach((ci, slot) => {
+    const c = cards[ci];
+    c.style.transition = animate ? 'transform .42s cubic-bezier(.2,.75,.25,1), opacity .42s ease, filter .42s ease' : 'none';
+    c.style.transform = `translate3d(${slot * step.x}px, ${slot * step.y}px, ${slot * step.z}px) rotateY(${phone ? -14 : -24}deg)`;
+    c.style.zIndex = String(100 - slot);
+    c.style.opacity = slot > 6 ? '0' : String(1 - slot * .06);
+    c.style.filter = slot ? `brightness(${1 - slot * .07})` : 'none';
+    c.classList.toggle('front', slot === 0);
+    c.tabIndex = slot === 0 ? 0 : -1;
+  });
+  const f = cards[order[0]]; if (f) $('.f3-name', layer).textContent = f.getAttribute('aria-label');
+  void n;
+}
+function cycle(d) {
+  if (busy || cards.length < 2) return;
+  busy = true; setTimeout(() => { busy = false; }, 180);
+  if (d > 0) order.push(order.shift()); else order.unshift(order.pop());
+  place(); A.sfx('click');
+}
+function choose(card) {
+  const n = card.name;
+  close(false);
+  if (n === 'desktop') { const up = ['gallery', ...Object.keys(A.apps)].filter(x => isOpen(x) && !(x === 'gallery' ? A.state.min : A.apps[x].min)); if (up.length) A.toggleDesktop(); return; }
+  if (n === 'gallery') { if (A.state.min) A.minimize(false); A.openWin(); }
+  else { if (A.apps[n].min) A.minApp(n, false); A.focusApp(n); }
+}
+function open() {
+  if (on) return;
+  A.toggleStart(false);
+  on = true; build();
+  layer = el('div', 'f3'); layer.setAttribute('role', 'dialog'); layer.setAttribute('aria-label', 'Flip 3D: pick a window');
+  const stage = el('div', 'f3-stage');
+  cards.forEach(c => { stage.append(c); c.onclick = () => { if (c.classList.contains('front')) choose(c); else { const i = cards.indexOf(c); while (order[0] !== i) order.push(order.shift()); place(); setTimeout(() => choose(c), 260); } }; });
+  layer.append(stage, el('div', 'f3-name'), el('div', 'f3-help', innerWidth < 700 ? 'Swipe to flip · tap to pick' : 'Scroll or use the arrow keys to flip · click or Enter to pick · Esc to cancel'));
+  body.append(layer); body.classList.add('f3-on');
+  place(false);
+  cards.forEach(c => { c.style.transform += ' translateY(40px)'; c.style.opacity = '0'; });
+  requestAnimationFrame(() => requestAnimationFrame(() => place(true)));
+  A.sfx('max');
+  const f = cards[order[0]]; if (f) f.focus({ preventScroll: true });
+  layer.addEventListener('wheel', e => { e.preventDefault(); cycle(e.deltaY > 0 ? 1 : -1); }, { passive: false });
+  layer.addEventListener('pointerdown', e => { if (e.target === layer || e.target === stage) close(true); });
+  let sy = null;
+  layer.addEventListener('touchstart', e => { sy = e.touches[0].clientY; }, { passive: true });
+  layer.addEventListener('touchend', e => { if (sy == null) return; const dy = e.changedTouches[0].clientY - sy; sy = null; if (Math.abs(dy) > 40) cycle(dy < 0 ? 1 : -1); }, { passive: true });
+}
+function close(cancel) {
+  if (!on) return;
+  on = false;
+  const l = layer; layer = null;
+  l.classList.add('out'); body.classList.remove('f3-on');
+  setTimeout(() => l.remove(), 260);
+  if (cancel) A.sfx('unmax');
+}
+A.flip3d = () => on ? close(true) : open();
+document.addEventListener('keydown', e => {
+  if (on) {
+    if (e.key === 'Escape') { e.preventDefault(); close(true); }
+    else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); choose(cards[order[0]]); }
+    else if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || (e.key === 'Tab' && !e.shiftKey)) { e.preventDefault(); cycle(1); }
+    else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || (e.key === 'Tab' && e.shiftKey)) { e.preventDefault(); cycle(-1); }
+    return;
+  }
+  if ((e.ctrlKey || e.altKey) && (e.code === 'Backquote' || e.key === '`')) { e.preventDefault(); open(); }
+}, true);
+const fb = $('.flip3d-btn'); if (fb) fb.onclick = () => A.flip3d();
 })();
 </script>
 </body></html><style id="awg-mobile-css">

@@ -1051,7 +1051,7 @@ footer{display:flex;align-items:center;gap:8px;padding:9px 12px;border-top:1px s
 .favb:hover,.favb:focus-visible{outline:0;box-shadow:0 0 0 1px rgba(60,40,0,.55),0 0 14px rgba(255,210,80,.95)}
 .simb:hover,.simb:focus-visible{outline:0;box-shadow:0 0 0 1px rgba(0,20,60,.55),0 0 14px rgba(120,200,255,.95)}
 .favb:active,.simb:active{transform:translateY(1px) scale(.97)}
-.favb.burst{animation:favburst .45s cubic-bezier(.3,1.6,.5,1)}
+.favb.favpop{animation:favburst .45s cubic-bezier(.3,1.6,.5,1)}
 @keyframes favburst{40%{transform:scale(1.25)}}
 #grid article:has(.favb.on) .card-tools{opacity:1;transform:none}
 #grid article:has(.favb.on) .card-tools > :not(.favb){opacity:0;transition:opacity .15s}
@@ -1146,6 +1146,7 @@ footer{display:flex;align-items:center;gap:8px;padding:9px 12px;border-top:1px s
   .clock{white-space:nowrap}
 }
 </style>
+<style id="awg-v14-css">.power-off{position:fixed;inset:0;z-index:2147483600;background:#000;animation:poweroff .7s ease-in forwards}@keyframes poweroff{from{opacity:0}to{opacity:1}}</style>
 <body>
 <div id="aero-boot" role="region" aria-label="Starting aerochan"><div class="bt-stage"><div class="bt-flash"></div><div class="bt-spin"><i class="bt-orb"></i><i class="bt-orb"></i><i class="bt-orb"></i><i class="bt-orb"></i></div><svg class="bt-mark" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><g class="bt-big"><polygon points="44.00,55.00 44.00,11.00 33.39,44.39" fill="#e4fbff"/><polygon points="44.00,55.00 44.00,11.00 54.61,44.39" fill="#74d6fb"/><polygon points="44.00,55.00 82.00,55.00 54.61,44.39" fill="#a9ecff"/><polygon points="44.00,55.00 82.00,55.00 54.61,65.61" fill="#2e9ce6"/><polygon points="44.00,55.00 44.00,99.00 54.61,65.61" fill="#0f53a8"/><polygon points="44.00,55.00 44.00,99.00 33.39,65.61" fill="#1667c2"/><polygon points="44.00,55.00 6.00,55.00 33.39,65.61" fill="#1f7fd6"/><polygon points="44.00,55.00 6.00,55.00 33.39,44.39" fill="#4bbcf2"/><polygon points="44.00,11.00 54.61,44.39 82.00,55.00 54.61,65.61 44.00,99.00 33.39,65.61 6.00,55.00 33.39,44.39" fill="none" stroke="#ffffff" stroke-opacity=".55" stroke-width="1.1" stroke-linejoin="miter"/></g><g class="bt-small"><polygon points="83.00,17.00 83.00,2.00 79.32,13.32" fill="#fff0f7"/><polygon points="83.00,17.00 83.00,2.00 86.68,13.32" fill="#ffa6cf"/><polygon points="83.00,17.00 95.50,17.00 86.68,13.32" fill="#ffcde4"/><polygon points="83.00,17.00 95.50,17.00 86.68,20.68" fill="#f4679f"/><polygon points="83.00,17.00 83.00,32.00 86.68,20.68" fill="#b2306a"/><polygon points="83.00,17.00 83.00,32.00 79.32,20.68" fill="#cc3f7a"/><polygon points="83.00,17.00 70.50,17.00 79.32,20.68" fill="#e2508c"/><polygon points="83.00,17.00 70.50,17.00 79.32,13.32" fill="#ff86bc"/><polygon points="83.00,2.00 86.68,13.32 95.50,17.00 86.68,20.68 83.00,32.00 79.32,20.68 70.50,17.00 79.32,13.32" fill="none" stroke="#ffffff" stroke-opacity=".55" stroke-width=".8" stroke-linejoin="miter"/></g></svg></div><div class="bt-text">Starting aerochan</div><button class="bt-sound" type="button" hidden>Play startup sound</button><div class="bt-copy">Made by Aozora</div></div>
 <svg class="defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
@@ -1327,7 +1328,7 @@ footer{display:flex;align-items:center;gap:8px;padding:9px 12px;border-top:1px s
 <p class="pz-lead">Little sounds for clicks, windows, games and downloads.</p>
 <label class="cbx"><input type="checkbox" id="snd-on" checked> Play sounds</label>
 <label class="slider">Volume <input type="range" id="snd-vol" min="0" max="100"></label>
-<ul class="snd-list"><li><span>Click</span><button type="button" class="play-snd" data-snd="click" aria-label="Play Click sound">Play</button></li><li><span>Open a window</span><button type="button" class="play-snd" data-snd="open" aria-label="Play Open a window sound">Play</button></li><li><span>Close a window</span><button type="button" class="play-snd" data-snd="close" aria-label="Play Close a window sound">Play</button></li><li><span>Minimize</span><button type="button" class="play-snd" data-snd="min" aria-label="Play Minimize sound">Play</button></li><li><span>Restore</span><button type="button" class="play-snd" data-snd="restore" aria-label="Play Restore sound">Play</button></li><li><span>Maximize</span><button type="button" class="play-snd" data-snd="max" aria-label="Play Maximize sound">Play</button></li><li><span>Restore down</span><button type="button" class="play-snd" data-snd="unmax" aria-label="Play Restore down sound">Play</button></li><li><span>Aero Shake</span><button type="button" class="play-snd" data-snd="shake" aria-label="Play Aero Shake sound">Play</button></li><li><span>Notification</span><button type="button" class="play-snd" data-snd="notify" aria-label="Play Notification sound">Play</button></li><li><span>Exclamation</span><button type="button" class="play-snd" data-snd="exclaim" aria-label="Play Exclamation sound">Play</button></li><li><span>Add a favorite</span><button type="button" class="play-snd" data-snd="fav" aria-label="Play Add a favorite sound">Play</button></li><li><span>Win a game</span><button type="button" class="play-snd" data-snd="win" aria-label="Play Win a game sound">Play</button></li><li><span>Hit a mine</span><button type="button" class="play-snd" data-snd="boom" aria-label="Play Hit a mine sound">Play</button></li><li><span>Snap to an edge</span><button type="button" class="play-snd" data-snd="snap" aria-label="Play Snap to an edge sound">Play</button></li><li><span>Pop a bubble</span><button type="button" class="play-snd" data-snd="pop" aria-label="Play Pop a bubble sound">Play</button></li><li><span>Download starts</span><button type="button" class="play-snd" data-snd="dl" aria-label="Play Download starts sound">Play</button></li><li><span>Download finishes</span><button type="button" class="play-snd" data-snd="done" aria-label="Play Download finishes sound">Play</button></li><li><span>Something went wrong</span><button type="button" class="play-snd" data-snd="error" aria-label="Play Something went wrong sound">Play</button></li></ul>
+<ul class="snd-list"><li><span>Click</span><button type="button" class="play-snd" data-snd="click" aria-label="Play Click sound">Play</button></li><li><span>Open a window</span><button type="button" class="play-snd" data-snd="open" aria-label="Play Open a window sound">Play</button></li><li><span>Close a window</span><button type="button" class="play-snd" data-snd="close" aria-label="Play Close a window sound">Play</button></li><li><span>Minimize</span><button type="button" class="play-snd" data-snd="min" aria-label="Play Minimize sound">Play</button></li><li><span>Restore</span><button type="button" class="play-snd" data-snd="restore" aria-label="Play Restore sound">Play</button></li><li><span>Maximize</span><button type="button" class="play-snd" data-snd="max" aria-label="Play Maximize sound">Play</button></li><li><span>Restore down</span><button type="button" class="play-snd" data-snd="unmax" aria-label="Play Restore down sound">Play</button></li><li><span>Aero Shake</span><button type="button" class="play-snd" data-snd="shake" aria-label="Play Aero Shake sound">Play</button></li><li><span>Notification</span><button type="button" class="play-snd" data-snd="notify" aria-label="Play Notification sound">Play</button></li><li><span>Exclamation</span><button type="button" class="play-snd" data-snd="exclaim" aria-label="Play Exclamation sound">Play</button></li><li><span>Add a favorite</span><button type="button" class="play-snd" data-snd="fav" aria-label="Play Add a favorite sound">Play</button></li><li><span>Win a game</span><button type="button" class="play-snd" data-snd="win" aria-label="Play Win a game sound">Play</button></li><li><span>Hit a mine</span><button type="button" class="play-snd" data-snd="boom" aria-label="Play Hit a mine sound">Play</button></li><li><span>Shut down</span><button type="button" class="play-snd" data-snd="shutdown" aria-label="Play Shut down sound">Play</button></li><li><span>Snap to an edge</span><button type="button" class="play-snd" data-snd="snap" aria-label="Play Snap to an edge sound">Play</button></li><li><span>Pop a bubble</span><button type="button" class="play-snd" data-snd="pop" aria-label="Play Pop a bubble sound">Play</button></li><li><span>Download starts</span><button type="button" class="play-snd" data-snd="dl" aria-label="Play Download starts sound">Play</button></li><li><span>Download finishes</span><button type="button" class="play-snd" data-snd="done" aria-label="Play Download finishes sound">Play</button></li><li><span>Something went wrong</span><button type="button" class="play-snd" data-snd="error" aria-label="Play Something went wrong sound">Play</button></li></ul>
 <p class="pz-lead">Startup voice by <a href="https://amitaro.net/" target="_blank" rel="noopener noreferrer">Amitaro’s Voice Material Studio</a>.</p>
 </section>
 <section class="pz-pane" data-pane="fx" hidden><h2>Desktop effects</h2>
@@ -2357,6 +2358,7 @@ const SOUNDS = {
   fav: t => { bell(t, 1568, .25, .07); bell(t + .06, 2093, .35, .06); },
   boom: t => { hiss(t, .45, 1200, 90, .3, .7); tone(t, 120, 40, .4, 'sine', .3); },
   win: t => { [784, 988, 1175, 1568].forEach((f, i) => bell(t + i * .1, f, .6, .08)); },
+  shutdown: t => { [1175, 988, 784, 587].forEach((f, i) => bell(t + i * .16, f, .8, .08)); tone(t + .5, 196, 147, 1.1, 'sine', .07); },
 };
 function sfx(name, force) {
   if ((!sndCfg.on && !force) || !SOUNDS[name]) return;
@@ -3534,8 +3536,16 @@ function tile(sub, go) {
 function welcome(after) { busy('Welcome'); setTimeout(() => { scr.classList.add('w7-leave'); A.sfx('open'); if (after) after(); setTimeout(() => { scr.hidden = true; scr.classList.remove('w7-leave', 'booted'); }, 900); }, 1600); }
 function shutDown() {
   A.closeWin(); Object.keys(A.apps).forEach(n => A.closeApp(n)); hideThumb(); closeMenus();
-  scr.hidden = false; busy('Shutting down...');
-  setTimeout(() => tile('Click to sign in', () => welcome(() => A.openWin())), 1700);
+  scr.hidden = false; busy('Shutting down...'); A.sfx('shutdown');
+  if (A.mp && A.mp.ctl) try { A.mp.ctl.pause(); } catch (e) { /* player gone */ }
+  setTimeout(() => {
+    const off = document.createElement('div'); off.className = 'power-off'; document.body.append(off);
+    setTimeout(() => {
+      try { window.close(); } catch (e) { /* not allowed */ }
+      // browsers only let a page close tabs it opened itself, so otherwise leave the site
+      setTimeout(() => { if (!window.closed) location.replace('about:blank'); }, 250);
+    }, 700);
+  }, 1900);
 }
 function lockScreen() { scr.hidden = false; tile('Locked', () => welcome()); }
 A.signIn = () => { scr.hidden = false; tile('Click to sign in', () => welcome()); };
@@ -3739,7 +3749,7 @@ function paintFav(b, on) {
 function favBtn(p) {
   const b = btn('favb', null, 'Add to favorites'); b.dataset.key = keyOf(p);
   paintFav(b, isFav(p));
-  b.onclick = e => { e.stopPropagation(); setFav(p, !isFav(p)); if (b.classList.contains('on')) { b.classList.remove('burst'); void b.offsetWidth; b.classList.add('burst'); } };
+  b.onclick = e => { e.stopPropagation(); setFav(p, !isFav(p)); if (b.classList.contains('on')) { b.classList.remove('favpop'); void b.offsetWidth; b.classList.add('favpop'); } };
   return b;
 }
 function simBtn(p) {

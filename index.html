@@ -990,8 +990,17 @@ footer{display:flex;align-items:center;gap:8px;padding:9px 12px;border-top:1px s
 .w7-screen{z-index:2147482000!important}
 .mp-embed .mp-loading{position:absolute;inset:0;z-index:1}
 .mp-embed.ready .mp-loading{display:none}
-#aero-boot{position:fixed;inset:0;z-index:2147483000;background:#000;display:grid;place-items:center;cursor:default;transition:opacity .6s ease}
+#aero-boot{position:fixed;inset:0;z-index:2147483000;background:#000;display:grid;place-items:center;cursor:default;transition:opacity 1.5s ease-in-out}
 #aero-boot.out{opacity:0;pointer-events:none}
+#aero-boot .bt-gate{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;background:#000;border:0;padding:0;color:#a4cbe3;font:300 18px "Segoe UI","Selawik","Open Sans",system-ui,sans-serif;letter-spacing:.03em;cursor:pointer;transition:opacity .8s ease}
+#aero-boot .bt-gate.go{opacity:0;pointer-events:none}
+#aero-boot .bt-gate:focus-visible{outline:none}
+#aero-boot .bt-gate:hover .bt-gpow,#aero-boot .bt-gate:focus-visible .bt-gpow{filter:drop-shadow(0 0 10px rgba(120,200,255,.9))}
+#aero-boot .bt-gpow{width:72px;height:72px;filter:drop-shadow(0 0 5px rgba(100,180,255,.5));transition:filter .3s ease;animation:bt-gpulse 2.4s ease-in-out infinite}
+@keyframes bt-gpulse{0%,100%{opacity:.7}50%{opacity:1}}
+#aero-boot.gated .bt-stage,#aero-boot.gated .bt-stage *,#aero-boot.gated .bt-text,#aero-boot.gated .bt-copy{animation-play-state:paused!important}
+#aero-boot .bt-stage{transition:transform 1.5s ease-in-out}
+#aero-boot.out .bt-stage{transform:scale(1.12)}
 #aero-boot .bt-stage{position:relative;width:180px;height:180px;margin-top:-60px}
 #aero-boot .bt-spin{position:absolute;inset:0;animation:bt-spin 1.5s cubic-bezier(.3,.1,.25,1) .25s both}
 #aero-boot .bt-orb{position:absolute;left:50%;top:50%;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;opacity:0;
@@ -9788,11 +9797,12 @@ AABJQ01UPgAAAFZvaWNlOiBBbWl0YXJvJ3MgVm9pY2UgTWF0ZXJpYWwgU3R1ZGlvIChodHRwczovL2Ft
   const end = () => {
     if (done) return;
     done = true;
+    if (scr0 && !quick) [...scr0.children].forEach((el, i) => el.animate([{ opacity: 0, transform: 'translateY(14px) scale(.98)' }, { opacity: 1, transform: 'none' }], { duration: 1000, delay: 350 + i * 120, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'backwards' }));
     b.classList.add('out');
     soundButton.hidden = true;
     const guest = scr0 && scr0.querySelector('.w7-user');
     if (guest && document.activeElement === soundButton) guest.focus({ preventScroll: true });
-    setTimeout(() => b.remove(), 650);
+    setTimeout(() => b.remove(), 1600);
   };
   const requestEnd = () => { advance = true; if (!playing) end(); };
   const soundEnded = () => { clearTimeout(deadline); playing = false; if (advance) end(); };
@@ -9802,35 +9812,33 @@ AABJQ01UPgAAAFZvaWNlOiBBbWl0YXJvJ3MgVm9pY2UgTWF0ZXJpYWwgU3R1ZGlvIChodHRwczovL2Ft
     if (playing) deadline = setTimeout(soundEnded, 4500);
     return result;
   };
-  let blocked = startSound(false) === 'blocked';
   soundButton.hidden = true;
-  const unlock = () => {
-    if (done || !blocked) return;
-    blocked = false;
-    startSound(true);
-  };
-  ['pointerdown', 'keydown', 'touchstart'].forEach(ev => document.addEventListener(ev, unlock, { once: true, capture: true }));
-  b.addEventListener('click', () => {
-    if (done) return;
-    if (blocked) {
-      blocked = false;
-      if (document.activeElement === soundButton) {
-        const guest = scr0 && scr0.querySelector('.w7-user');
-        if (guest) guest.focus({ preventScroll: true });
-      }
-      soundButton.hidden = true;
-      startSound(true);
-    }
-    requestEnd();
-  });
-
-  const t0 = performance.now();
+  let blocked = startSound(false) === 'blocked';
+  let t0 = performance.now();
   const wait = () => {
     if (done) return;
     if ((A && A.mp && A.mp.ctl) || performance.now() - t0 > 9000) requestEnd();
     else setTimeout(wait, 150);
   };
-  setTimeout(wait, quick ? 600 : 3700);
+  const runWait = () => { t0 = performance.now(); setTimeout(wait, quick ? 600 : 3700); };
+  if (blocked) {
+    /* The browser will not play sound until the visitor interacts, so the boot waits behind a start screen. */
+    const gate = document.createElement('button');
+    gate.type = 'button'; gate.className = 'bt-gate';
+    gate.innerHTML = '<svg class="bt-gpow" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29" fill="none" stroke="#7fb9e8" stroke-width="2.5"/><path d="M32 16v17M22 22.5a15 15 0 1 0 20 0" fill="none" stroke="#bfe3ff" stroke-width="4" stroke-linecap="round"/></svg><span>Click to start</span>';
+    b.append(gate); b.classList.add('gated');
+    gate.focus({ preventScroll: true });
+    gate.addEventListener('click', e => {
+      e.stopPropagation();
+      if (!blocked) return;
+      blocked = false;
+      b.classList.remove('gated'); gate.classList.add('go');
+      setTimeout(() => gate.remove(), 800);
+      startSound(true);
+      runWait();
+    });
+  } else runWait();
+  b.addEventListener('click', () => { if (!done && !blocked) requestEnd(); });
 })();
 </script>
 <script id="awg-autoplay">

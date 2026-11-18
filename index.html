@@ -2971,7 +2971,7 @@ startBtn.onclick = () => toggleStart();
 document.addEventListener('pointerdown', e => { if (!startMenu.hidden && !e.target.closest('#startmenu, .start')) toggleStart(false); });
 $$('[data-open]', startMenu).forEach(b => b.onclick = () => { toggleStart(false); openApp(b.dataset.open); });
 $('[data-act="desktop"]', startMenu).onclick = () => { toggleStart(false); minimizeAll(); };
-$('[data-act="closeall"]', startMenu).onclick = () => { toggleStart(false); closeWin(); Object.keys(apps).forEach(closeApp); };
+{ const ca = $('[data-act="closeall"]', startMenu); if (ca) ca.onclick = () => { toggleStart(false); closeWin(); Object.keys(apps).forEach(closeApp); }; }
 startMenu.addEventListener('keydown', e => {
   if (!/Arrow(Up|Down)/.test(e.key)) return;
   const items = $$('button', startMenu), i = items.indexOf(document.activeElement);

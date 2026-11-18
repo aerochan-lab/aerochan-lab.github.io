@@ -2779,13 +2779,30 @@ const SOUNDS = {
   win: t => { [72, 76, 79, 84, 88].forEach((n, i) => glass(t + i * .11, NOTE(n), 1.6, .07, (i - 2) * .2)); },
   shutdown: t => { [88, 84, 79, 72].forEach((n, i) => glass(t + i * .2, NOTE(n), 2, .065, (1.5 - i) * .2)); air(t + .5, 1.4, 1200, 200, .05, .5); },
 };
+/* recorded CC0 sounds in sounds/ (Freesound); the made-here versions above are only a fallback while they load */
+const SFILE = ["click", "open", "close", "min", "restore", "max", "unmax", "snap", "pop", "dl", "done", "ok", "no", "error", "exclaim", "notify", "shake", "fav", "win", "shutdown"], SRAW = {}, SBUF = {};
+SFILE.forEach(n => fetch('sounds/' + n + '.mp3').then(r => r.ok ? r.arrayBuffer() : null).then(b => { if (b) SRAW[n] = b; }).catch(() => {}));
+function fileBuf(n) {
+  if (SBUF[n] || !SRAW[n]) return SBUF[n];
+  const raw = SRAW[n]; delete SRAW[n];
+  try { const p = AC.decodeAudioData(raw, b => { SBUF[n] = b; }, () => {}); if (p && p.then) p.then(b => { SBUF[n] = b; }).catch(() => {}); } catch (e) { /* keep fallback */ }
+  return null;
+}
+function playFile(n, t) {
+  SFILE.forEach(fileBuf);
+  const b = SBUF[n]; if (!b) return false;
+  const s = AC.createBufferSource(), g = AC.createGain();
+  s.buffer = b; if (n === 'click' || n === 'pop') s.playbackRate.value = .96 + Math.random() * .08;
+  g.gain.value = .9; s.connect(g); out(g, 0, .12); s.start(t);
+  return true;
+}
 function sfx(name, force) {
   if ($('#aero-boot')) return;
   if ((!sndCfg.on && !force) || !SOUNDS[name]) return;
   const now = performance.now();
   if (now - (lastSnd[name] || 0) < 55) return;
   lastSnd[name] = now;
-  try { if (audio()) SOUNDS[name](AC.currentTime + .01); } catch (e) { /* sound is optional */ }
+  try { if (audio() && !playFile(name, AC.currentTime + .01)) SOUNDS[name](AC.currentTime + .01); } catch (e) { /* sound is optional */ }
 }
 const trayVol = $('#tray-vol');
 function applySound() {

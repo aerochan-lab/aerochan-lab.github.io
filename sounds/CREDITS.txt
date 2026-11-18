@@ -4,4 +4,4 @@ click 736912 | open/restore 703284 + 802490 | close 427389 | min 419341 | max 42
 snap 467951 | pop 328119 | dl 166325 | done 614832 | ok 593220 | no 560665
 error 398661 | exclaim 198402 | notify 571513 | shake 147285 | fav 360948
 win 456965 | shutdown 375599
-startup voice: Amitaro's Voice Material Studio (amitaro.net)
+startup: celesta 823181 + crystal twinkle 639429, voice from Amitaro's Voice Material Studio (amitaro.net)

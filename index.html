@@ -1252,6 +1252,10 @@ body.swv-open{overflow:hidden}
 .opaque .window{background:linear-gradient(180deg,rgba(255,255,255,.3) 0,rgba(255,255,255,.12) 29px,rgba(255,255,255,.05) 30px,rgba(255,255,255,.08) 100%),linear-gradient(rgb(var(--c) / .3),rgb(var(--c) / .3)),#16222f}
 .peeking .window{background:transparent}
 </style>
+<style id="awg-autofit-css">
+/* Auto: fill the screen when only a little would be cropped, fit only when filling would cut off a lot */
+.pos-auto .wall.af,.pos-auto .wp-img.af{background-size:cover}
+</style>
 <body>
 <div id="aero-boot" class="gated" role="region" aria-label="Starting aerochan"><button type="button" class="bt-gate"><svg class="bt-gpow" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29" fill="none" stroke="#7fb9e8" stroke-width="2.5"/><path d="M32 16v17M22 22.5a15 15 0 1 0 20 0" fill="none" stroke="#bfe3ff" stroke-width="4" stroke-linecap="round"/></svg><span>Click to start</span></button><div class="bt-stage"><div class="bt-flash"></div><div class="bt-spin"><i class="bt-orb"></i><i class="bt-orb"></i><i class="bt-orb"></i><i class="bt-orb"></i></div><svg class="bt-mark" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><g class="bt-big"><polygon points="44.00,55.00 44.00,11.00 33.39,44.39" fill="#e4fbff"/><polygon points="44.00,55.00 44.00,11.00 54.61,44.39" fill="#74d6fb"/><polygon points="44.00,55.00 82.00,55.00 54.61,44.39" fill="#a9ecff"/><polygon points="44.00,55.00 82.00,55.00 54.61,65.61" fill="#2e9ce6"/><polygon points="44.00,55.00 44.00,99.00 54.61,65.61" fill="#0f53a8"/><polygon points="44.00,55.00 44.00,99.00 33.39,65.61" fill="#1667c2"/><polygon points="44.00,55.00 6.00,55.00 33.39,65.61" fill="#1f7fd6"/><polygon points="44.00,55.00 6.00,55.00 33.39,44.39" fill="#4bbcf2"/><polygon points="44.00,11.00 54.61,44.39 82.00,55.00 54.61,65.61 44.00,99.00 33.39,65.61 6.00,55.00 33.39,44.39" fill="none" stroke="#ffffff" stroke-opacity=".55" stroke-width="1.1" stroke-linejoin="miter"/></g><g class="bt-small"><polygon points="83.00,17.00 83.00,2.00 79.32,13.32" fill="#fff0f7"/><polygon points="83.00,17.00 83.00,2.00 86.68,13.32" fill="#ffa6cf"/><polygon points="83.00,17.00 95.50,17.00 86.68,13.32" fill="#ffcde4"/><polygon points="83.00,17.00 95.50,17.00 86.68,20.68" fill="#f4679f"/><polygon points="83.00,17.00 83.00,32.00 86.68,20.68" fill="#b2306a"/><polygon points="83.00,17.00 83.00,32.00 79.32,20.68" fill="#cc3f7a"/><polygon points="83.00,17.00 70.50,17.00 79.32,20.68" fill="#e2508c"/><polygon points="83.00,17.00 70.50,17.00 79.32,13.32" fill="#ff86bc"/><polygon points="83.00,2.00 86.68,13.32 95.50,17.00 86.68,20.68 83.00,32.00 79.32,20.68 70.50,17.00 79.32,13.32" fill="none" stroke="#ffffff" stroke-opacity=".55" stroke-width=".8" stroke-linejoin="miter"/></g></svg></div><div class="bt-text">Starting aerochan</div><div class="bt-copy">Made by Aozora</div></div>
 <svg class="defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
@@ -4821,6 +4825,34 @@ setInterval(() => {
   if (d.getHours() % 12 === 11 && d.getMinutes() === 11 && d.getSeconds() < 5 && desktopReady()) egg('1111', 'Make a wish', 'It is 11:11.');
 }, 5000);
 A.sakura = sakura;
+})();
+</script>
+<script id="awg-autofit">
+(() => {
+  const desk = document.querySelector('.desktop'); if (!desk) return;
+  const els = () => [...desk.querySelectorAll('.wall, .wp-img')];
+  const sizes = new Map();
+  const urlOf = el => { const m = /url\(["']?(.*?)["']?\)/.exec(getComputedStyle(el).backgroundImage); return m ? m[1] : ''; };
+  function judge(el) {
+    const u = urlOf(el);
+    if (!u) { el.classList.add('af'); return; }
+    const set = (w, h) => {
+      const ri = w / h, rs = innerWidth / Math.max(1, innerHeight);
+      const crop = 1 - Math.min(ri / rs, rs / ri);   // share of the picture that filling would cut off
+      el.classList.toggle('af', crop <= 0.25);
+    };
+    if (sizes.has(u)) { const [w, h] = sizes.get(u); if (w) set(w, h); return; }
+    sizes.set(u, [0, 0]);
+    const im = new Image();
+    im.onload = () => { sizes.set(u, [im.naturalWidth, im.naturalHeight]); judge(el); };
+    im.onerror = () => { sizes.delete(u); el.classList.add('af'); };
+    im.src = u;
+  }
+  let t = 0;
+  const run = () => { clearTimeout(t); t = setTimeout(() => els().forEach(judge), 60); };
+  new MutationObserver(run).observe(desk, { attributes: true, subtree: true, attributeFilter: ['style', 'class'] });
+  addEventListener('resize', run);
+  run();
 })();
 </script>
 </body></html><style id="awg-mobile-css">

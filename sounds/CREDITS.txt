@@ -1,6 +1,7 @@
 aerochan sounds - all CC0 (public domain), edited (trimmed, faded, leveled) for the site.
 Source previews from freesound.org, sound IDs:
-click 736912 | open 198389 | close 427389 | min/restore 419341 | max 427823 | unmax 816261
+click 736912 | open/restore 703284 + 802490 | close 427389 | min 419341 | max 427823 | unmax 816261
 snap 467951 | pop 328119 | dl 166325 | done 614832 | ok 593220 | no 560665
 error 398661 | exclaim 198402 | notify 571513 | shake 147285 | fav 360948
-win 456965 | shutdown 490831
+win 456965 | shutdown 375599
+startup (embedded in index.html) 823181 + 644412
